@@ -1,6 +1,6 @@
 # Memory Game
 
-My [Memory Card Game](https://www.theodinproject.com/lessons/node-path-javascript-memory-card)
+My [Memory Card Game](https://www.theodinproject.com/lessons/node-path-javascript-memory-card). 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

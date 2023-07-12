@@ -3,23 +3,69 @@ import React, { useEffect, useState, useRef } from 'react';
 import './index.css';
 
 // Dummy Data
-/* const cards = [
+/* const cards = 
+[
   {
-    id: 1,
-    title: 'FIRST',
-    image: 'https://blackroses.cards/cdn/shop/products/ks2.jpg?v=1661168336',
+    "code": "9S",
+    "image": "https://deckofcardsapi.com/static/img/9S.png",
+    "images": {
+      "svg": "https://deckofcardsapi.com/static/img/9S.svg",
+      "png": "https://deckofcardsapi.com/static/img/9S.png"
+    },
+    "value": "9",
+    "suit": "SPADES"
   },
   {
-    id: 2,
-    title: 'King of Hearts',
-    image: 'https://www.deckofcardsapi.com/static/img/KH.png',
+    "code": "QD",
+    "image": "https://deckofcardsapi.com/static/img/QD.png",
+    "images": {
+      "svg": "https://deckofcardsapi.com/static/img/QD.svg",
+      "png": "https://deckofcardsapi.com/static/img/QD.png"
+    },
+    "value": "QUEEN",
+    "suit": "DIAMONDS"
   },
   {
-    id: 3,
-    title: 'Eight of Clubs',
-    image: 'https://www.deckofcardsapi.com/static/img/8C.png',
+    "code": "KS",
+    "image": "https://deckofcardsapi.com/static/img/KS.png",
+    "images": {
+      "svg": "https://deckofcardsapi.com/static/img/KS.svg",
+      "png": "https://deckofcardsapi.com/static/img/KS.png"
+    },
+    "value": "KING",
+    "suit": "SPADES"
   },
-]; */
+  {
+    "code": "0D",
+    "image": "https://deckofcardsapi.com/static/img/0D.png",
+    "images": {
+      "svg": "https://deckofcardsapi.com/static/img/0D.svg",
+      "png": "https://deckofcardsapi.com/static/img/0D.png"
+    },
+    "value": "10",
+    "suit": "DIAMONDS"
+  },
+  {
+    "code": "QC",
+    "image": "https://deckofcardsapi.com/static/img/QC.png",
+    "images": {
+      "svg": "https://deckofcardsapi.com/static/img/QC.svg",
+      "png": "https://deckofcardsapi.com/static/img/QC.png"
+    },
+    "value": "QUEEN",
+    "suit": "CLUBS"
+  },
+  {
+    "code": "5D",
+    "image": "https://deckofcardsapi.com/static/img/5D.png",
+    "images": {
+      "svg": "https://deckofcardsapi.com/static/img/5D.svg",
+      "png": "https://deckofcardsapi.com/static/img/5D.png"
+    },
+    "value": "5",
+    "suit": "DIAMONDS"
+  }
+] */
 
 export default function Game() {
   const isInitialMount = useRef(true);
@@ -27,53 +73,49 @@ export default function Game() {
 
   const [cards, setCards] = useState(null);
 
-  const fetchDeckId = async () => {
-    console.log('fetchDeckId called');
-    const response = await fetch(
-      `https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`
-    );
-    const data = await response.json();
-    setDeckId(data.deck_id);
-  };
-
-  async function drawCards() {
-    console.log('drawCards function called, to deckId: ' + deckId);
-    await fetch(
-      `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=6`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        setCards(response.cards);
-      })
-      .catch((err) => console.error(err));
-  }
-
   useEffect(() => {
-    if (isInitialMount.current) {
+    if (isInitialMount.current === true) {
       isInitialMount.current = false;
     } else {
+      const fetchDeckId = async () => {
+        const response = await fetch(
+          `https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`
+        );
+        const data = await response.json();
+        setDeckId(data.deck_id);
+      };
       fetchDeckId();
     }
   }, []);
 
-  if (deckId !== null && cards === null) {
-    console.log('drawCards function');
-    drawCards();
-    // console.log('ran');
-  }
-  // useEffect((drawCards) => {
-  //   console.log('------------------');
-  //   console.log('Deck Id has been updated');
-  //   console.log(deckId);
-  //   drawCards();
-  // }, [deckId]);
+  useEffect(() => {
+    if (
+      isInitialMount.current !== true &&
+      deckId !== null &&
+      deckId !== undefined
+    ) {
+      async function drawCards() {
+        await fetch(
+          `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=6`
+        )
+          .then((response) => response.json())
+          .then((response) => {
+            setCards(response.cards);
+          })
+          .catch((err) => console.error(err));
+      }
+      drawCards();
+    }
+  }, [deckId]);
 
   return (
     <>
       <div className="gameContainer">
-        {cards !== null
-          ? cards.map((card) => <Card info={card} key={card.code} />)
-          : 'No Cards Provided'}
+        {cards !== null && cards !== undefined ? (
+          cards.map((card) => <Card info={card} key={card.code} />)
+        ) : (
+          <h2>loading ...</h2>
+        )}
       </div>
     </>
   );
