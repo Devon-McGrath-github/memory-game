@@ -1,79 +1,15 @@
 import Card from '../Card/Card.js';
 import React, { useEffect, useLayoutEffect, useState, useRef } from 'react';
-import './index.css';
-
-// Dummy Data
-/* const cards = 
-[
-  {
-    "code": "9S",
-    "image": "https://deckofcardsapi.com/static/img/9S.png",
-    "images": {
-      "svg": "https://deckofcardsapi.com/static/img/9S.svg",
-      "png": "https://deckofcardsapi.com/static/img/9S.png"
-    },
-    "value": "9",
-    "suit": "SPADES"
-  },
-  {
-    "code": "QD",
-    "image": "https://deckofcardsapi.com/static/img/QD.png",
-    "images": {
-      "svg": "https://deckofcardsapi.com/static/img/QD.svg",
-      "png": "https://deckofcardsapi.com/static/img/QD.png"
-    },
-    "value": "QUEEN",
-    "suit": "DIAMONDS"
-  },
-  {
-    "code": "KS",
-    "image": "https://deckofcardsapi.com/static/img/KS.png",
-    "images": {
-      "svg": "https://deckofcardsapi.com/static/img/KS.svg",
-      "png": "https://deckofcardsapi.com/static/img/KS.png"
-    },
-    "value": "KING",
-    "suit": "SPADES"
-  },
-  {
-    "code": "0D",
-    "image": "https://deckofcardsapi.com/static/img/0D.png",
-    "images": {
-      "svg": "https://deckofcardsapi.com/static/img/0D.svg",
-      "png": "https://deckofcardsapi.com/static/img/0D.png"
-    },
-    "value": "10",
-    "suit": "DIAMONDS"
-  },
-  {
-    "code": "QC",
-    "image": "https://deckofcardsapi.com/static/img/QC.png",
-    "images": {
-      "svg": "https://deckofcardsapi.com/static/img/QC.svg",
-      "png": "https://deckofcardsapi.com/static/img/QC.png"
-    },
-    "value": "QUEEN",
-    "suit": "CLUBS"
-  },
-  {
-    "code": "5D",
-    "image": "https://deckofcardsapi.com/static/img/5D.png",
-    "images": {
-      "svg": "https://deckofcardsapi.com/static/img/5D.svg",
-      "png": "https://deckofcardsapi.com/static/img/5D.png"
-    },
-    "value": "5",
-    "suit": "DIAMONDS"
-  }
-] */
+import './Game.css';
 
 export default function Game() {
   const isInitialMount = useRef(true);
-  let [deckId, setDeckId] = useState(null);
 
+  const [deckId, setDeckId] = useState(null);
   const [cards, setCards] = useState(null);
 
   useEffect(() => {
+    // fetch deckId ONLY AFTER initial mount (avoids making 2 requests)
     if (isInitialMount.current === true) {
       isInitialMount.current = false;
     } else {
@@ -89,6 +25,7 @@ export default function Game() {
   }, []);
 
   useLayoutEffect(() => {
+    // Draw cards if deckId has been retrieved or updated
     if (
       isInitialMount.current !== true &&
       deckId !== null &&
