@@ -1,5 +1,5 @@
 import Card from '../Card/Card.js';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useState, useRef } from 'react';
 import './index.css';
 
 // Dummy Data
@@ -88,7 +88,7 @@ export default function Game() {
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (
       isInitialMount.current !== true &&
       deckId !== null &&
@@ -114,7 +114,7 @@ export default function Game() {
         {cards !== null && cards !== undefined ? (
           cards.map((card) => <Card info={card} key={card.code} />)
         ) : (
-          <h2>loading ...</h2>
+          <h2 className="loadingText">loading ...</h2>
         )}
       </div>
     </>
