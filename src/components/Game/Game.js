@@ -1,4 +1,4 @@
-import Card from '../Card/index.js';
+import Card from '../Card/Card.js';
 import React from 'react';
 import './index.css';
 
@@ -10,13 +10,13 @@ const cards = [
   },
   {
     id: 2,
-    title: 'SECOND',
-    image: 'https://blackroses.cards/cdn/shop/products/ks2.jpg?v=1661168336',
+    title: 'King of Hearts',
+    image: 'https://www.deckofcardsapi.com/static/img/KH.png',
   },
   {
     id: 3,
-    title: 'THIRD',
-    image: 'https://blackroses.cards/cdn/shop/products/ks2.jpg?v=1661168336',
+    title: 'Eight of Clubs',
+    image: 'https://www.deckofcardsapi.com/static/img/8C.png',
   },
 ];
 
