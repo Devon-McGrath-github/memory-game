@@ -1,6 +1,7 @@
 import Card from '../Card/Card.js';
 import React, { useEffect, useLayoutEffect, useState, useRef } from 'react';
 import './Game.css';
+import Loading from '../Loading/Loading.js';
 
 export default function Game() {
   const isInitialMount = useRef(true);
@@ -24,26 +25,26 @@ export default function Game() {
     }
   }, []);
 
-  useLayoutEffect(() => {
-    // Draw cards if deckId has been retrieved or updated
-    if (
-      isInitialMount.current !== true &&
-      deckId !== null &&
-      deckId !== undefined
-    ) {
-      async function drawCards() {
-        await fetch(
-          `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=6`
-        )
-          .then((response) => response.json())
-          .then((response) => {
-            setCards(response.cards);
-          })
-          .catch((err) => console.error(err));
-      }
-      drawCards();
-    }
-  }, [deckId]);
+  // useLayoutEffect(() => {
+  //   // Draw cards if deckId has been retrieved or updated
+  //   if (
+  //     isInitialMount.current !== true &&
+  //     deckId !== null &&
+  //     deckId !== undefined
+  //   ) {
+  //     async function drawCards() {
+  //       await fetch(
+  //         `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=6`
+  //       )
+  //         .then((response) => response.json())
+  //         .then((response) => {
+  //           setCards(response.cards);
+  //         })
+  //         .catch((err) => console.error(err));
+  //     }
+  //     drawCards();
+  //   }
+  // }, [deckId]);
 
   return (
     <>
@@ -51,7 +52,7 @@ export default function Game() {
         {cards !== null && cards !== undefined ? (
           cards.map((card) => <Card info={card} key={card.code} />)
         ) : (
-          <h2 className="loadingText">loading ...</h2>
+          <Loading />
         )}
       </div>
     </>
