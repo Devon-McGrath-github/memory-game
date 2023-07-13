@@ -25,26 +25,26 @@ export default function Game() {
     }
   }, []);
 
-  // useLayoutEffect(() => {
-  //   // Draw cards if deckId has been retrieved or updated
-  //   if (
-  //     isInitialMount.current !== true &&
-  //     deckId !== null &&
-  //     deckId !== undefined
-  //   ) {
-  //     async function drawCards() {
-  //       await fetch(
-  //         `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=6`
-  //       )
-  //         .then((response) => response.json())
-  //         .then((response) => {
-  //           setCards(response.cards);
-  //         })
-  //         .catch((err) => console.error(err));
-  //     }
-  //     drawCards();
-  //   }
-  // }, [deckId]);
+  useLayoutEffect(() => {
+    // Draw cards if deckId has been retrieved or updated
+    if (
+      isInitialMount.current !== true &&
+      deckId !== null &&
+      deckId !== undefined
+    ) {
+      async function drawCards() {
+        await fetch(
+          `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=6`
+        )
+          .then((response) => response.json())
+          .then((response) => {
+            setCards(response.cards);
+          })
+          .catch((err) => console.error(err));
+      }
+      drawCards();
+    }
+  }, [deckId]);
 
   return (
     <>
