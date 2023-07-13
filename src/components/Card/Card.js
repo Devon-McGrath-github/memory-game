@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import GameContext from '../../context/GameContext';
 import './Card.css';
 
-console.log('Add image back to Card.js');
 export default function Card({ info }) {
-  // removed image while testing/developing
-  const { value, suit } = info;
-  // const { image, value, suit } = info;
+  const { image, value, suit, code } = info;
+  const { handleCardSelection } = useContext(GameContext);
+
+  const handleClick = async () => {
+    handleCardSelection(code);
+  };
+
   return (
-    <div id="cardContainer">
-      {/* <img src={image} alt={value} className="cardImage" /> */}
+    <div id="cardContainer" onClick={handleClick}>
+      <img src={image} alt={value} className="cardImage" />
       <h2 className="cardTitle">{`${value} of ${suit}`}</h2>
     </div>
   );
