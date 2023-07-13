@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import gameActions from '../hooks/gameActions';
+import { useActions } from '../hooks/useGameActions.js';
 
 const INITIAL_SCORE = {
   currentScore: 0,
@@ -10,7 +10,7 @@ const GameContext = createContext({});
 
 export function GameContextProvider({ children }) {
   const { currentScore, highScore } = INITIAL_SCORE;
-  const { handleCardSelection } = gameActions();
+  const { handleCardSelection } = useActions();
 
   return (
     <GameContext.Provider
