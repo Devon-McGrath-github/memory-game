@@ -81,7 +81,9 @@ const useActions = () => {
   };
   // Whenever deckId changes, Draw cards from API
   useEffect(() => {
-    drawCards(deckId, DEFAULT_NUMBER_OF_CARDS);
+    if (deckId !== null && deckId !== undefined) {
+      drawCards(deckId, DEFAULT_NUMBER_OF_CARDS);
+    }
   }, [deckId]);
 
   function restartGame() {
