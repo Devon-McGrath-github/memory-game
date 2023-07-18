@@ -4,7 +4,7 @@ const INITIAL_SCORE = {
   currentScore: 0,
   highScore: 0,
 };
-const DEFAULT_NUMBER_OF_CARDS = 6;
+const DEFAULT_NUMBER_OF_CARDS = 2;
 
 const reducer = (score, action) => {
   switch (action.type) {
@@ -95,7 +95,6 @@ const useActions = () => {
   function checkWin() {
     // check if current score + new card choesn is the max possible score
     if (score.currentScore + 1 === cards.length) {
-      console.log('you win');
       setIsGameWon(true);
     }
   }
