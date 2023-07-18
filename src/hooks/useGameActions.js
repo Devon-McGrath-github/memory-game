@@ -56,6 +56,7 @@ const useActions = () => {
   const [selectedCards, setSelectedCards] = useState([]);
   const [score, dispatch] = useReducer(reducer, INITIAL_SCORE);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isGameWon, setIsGameWon] = useState(false);
 
   // grab a deck ID from API
   useEffect(() => {
@@ -91,12 +92,19 @@ const useActions = () => {
     setSelectedCards([]);
   }
 
+  function checkWin() {
+    if (score.currentScore === cards.length) {
+      setIsGameWon(true);
+    }
+  }
+
   // when a card is selected
   function handleCardSelection(card) {
     // if card has NOT already been selected
     if (!selectedCards.includes(card)) {
       setSelectedCards([...selectedCards, card]);
       dispatch({ type: 'ADD_SCORE' });
+      checkWin();
       shuffle(cards);
     } else {
       setIsGameOver(true);
@@ -107,6 +115,7 @@ const useActions = () => {
   function playAgain(numberOfCards) {
     drawCards(deckId, numberOfCards);
     setIsGameOver(false);
+    setIsGameWon(false);
   }
 
   return {
@@ -114,6 +123,7 @@ const useActions = () => {
     cards,
     handleCardSelection,
     isGameOver,
+    isGameWon,
     playAgain,
   };
 };

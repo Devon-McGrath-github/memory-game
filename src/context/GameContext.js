@@ -4,7 +4,7 @@ import { useActions } from '../hooks/useGameActions.js';
 const GameContext = createContext({});
 
 export function GameContextProvider({ children }) {
-  const { score, cards, handleCardSelection, isGameOver, playAgain } =
+  const { score, cards, handleCardSelection, isGameOver, isGameWon, playAgain } =
     useActions();
 
   return (
@@ -14,6 +14,7 @@ export function GameContextProvider({ children }) {
         cards,
         handleCardSelection,
         isGameOver,
+        isGameWon,
         playAgain,
       }}
     >
