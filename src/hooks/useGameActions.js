@@ -93,7 +93,9 @@ const useActions = () => {
   }
 
   function checkWin() {
-    if (score.currentScore === cards.length) {
+    // check if current score + new card choesn is the max possible score
+    if (score.currentScore + 1 === cards.length) {
+      console.log('you win');
       setIsGameWon(true);
     }
   }
@@ -103,8 +105,8 @@ const useActions = () => {
     // if card has NOT already been selected
     if (!selectedCards.includes(card)) {
       setSelectedCards([...selectedCards, card]);
-      dispatch({ type: 'ADD_SCORE' });
       checkWin();
+      dispatch({ type: 'ADD_SCORE' });
       shuffle(cards);
     } else {
       setIsGameOver(true);

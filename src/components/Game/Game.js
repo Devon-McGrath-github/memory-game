@@ -4,9 +4,10 @@ import './Game.css';
 import Loading from '../Loading/Loading.js';
 import GameContext from '../../context/GameContext.js';
 import GameOver from '../GameOver/GameOver.js';
+import Win from '../Win/Win.js';
 
 export default function Game() {
-  const { isGameOver, cards } = useContext(GameContext);
+  const { isGameOver, isGameWon, cards } = useContext(GameContext);
 
   return (
     <>
@@ -18,6 +19,8 @@ export default function Game() {
             <Loading />
           )}
         </div>
+      ) : isGameWon === true ? (
+        <Win />
       ) : (
         <GameOver />
       )}

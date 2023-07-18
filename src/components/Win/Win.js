@@ -1,12 +1,12 @@
 import React from 'react';
 import './Win.css';
-import Score from '../Score/Score';
+import Replay from '../Replay/Replay';
 
 export default function Win() {
   return (
     <div>
       <h2>Congratulations, You Won!</h2>
-      <Score />
+      <Replay />
     </div>
   );
 }
