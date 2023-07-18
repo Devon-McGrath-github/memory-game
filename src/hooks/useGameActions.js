@@ -29,16 +29,19 @@ const reducer = (score, action) => {
 };
 
 const useActions = () => {
-  const [selectedCards, setSelectCards] = useState([]);
+  const [selectedCards, setSelectedCards] = useState([]);
   const [score, dispatch] = useReducer(reducer, INITIAL_SCORE);
 
   function handleCardSelection(card) {
-    if (selectedCards.includes(card)) {
-      console.log('you lost');
-    } else {
-      setSelectCards(card);
+    if (!selectedCards.includes(card)) {
+      setSelectedCards([...selectedCards, card]);
       dispatch({ type: 'ADD_SCORE' });
+    } else {
+      console.log('you lost');
+      dispatch({ type: 'RESTART' });
     }
+    console.log(selectedCards);
+    console.log(selectedCards.includes(card));
   }
 
   return {
