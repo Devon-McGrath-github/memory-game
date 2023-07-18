@@ -4,7 +4,7 @@ const INITIAL_SCORE = {
   currentScore: 0,
   highScore: 0,
 };
-const DEFAULT_NUMBER_OF_CARDS = 6;
+const DEFAULT_NUMBER_OF_CARDS = 2;
 
 const reducer = (score, action) => {
   switch (action.type) {
@@ -92,20 +92,21 @@ const useActions = () => {
     setSelectedCards([]);
   }
 
-  function checkWin() {
-    // check if current score + new card choesn is the max possible score
-    if (score.currentScore + 1 === cards.length) {
+  function checkWin(score) {
+    // check if current score + new card chosen is the max possible score
+    if (score >= cards.length) {
       setIsGameWon(true);
+      restartGame();
     }
   }
 
-  // when a card is selected
+  // when a card is selected determine win/loss and adjust scores accordingly
   function handleCardSelection(card) {
     // if card has NOT already been selected
     if (!selectedCards.includes(card)) {
       setSelectedCards([...selectedCards, card]);
-      checkWin();
       dispatch({ type: 'ADD_SCORE' });
+      checkWin(score.currentScore + 1);
       shuffle(cards);
     } else {
       setIsGameOver(true);
