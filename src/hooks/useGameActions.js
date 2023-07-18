@@ -4,6 +4,7 @@ const INITIAL_SCORE = {
   currentScore: 0,
   highScore: 0,
 };
+const DEFAULT_NUMBER_OF_CARDS = 6;
 
 const reducer = (score, action) => {
   switch (action.type) {
@@ -28,12 +29,35 @@ const reducer = (score, action) => {
   }
 };
 
+// fisher-Yates Shuffle algorithm
+function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex !== 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
 const useActions = () => {
-  const [selectedCards, setSelectedCards] = useState([]);
   const [deckId, setDeckId] = useState(null);
   const [cards, setCards] = useState(null);
+  const [selectedCards, setSelectedCards] = useState([]);
   const [score, dispatch] = useReducer(reducer, INITIAL_SCORE);
+  const [isGameOver, setIsGameOver] = useState(false);
 
+  // grab a deck ID from API
   useEffect(() => {
     const fetchDeckId = async () => {
       const response = await fetch(
@@ -45,40 +69,51 @@ const useActions = () => {
     fetchDeckId();
   }, []);
 
+  const drawCards = async (deckId, numberOfCards) => {
+    await fetch(
+      `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=${numberOfCards}`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setCards(response.cards);
+      })
+      .catch((err) => console.error(err));
+  };
+  // Whenever deckId changes, Draw cards from API
   useEffect(() => {
-    async function drawCards() {
-      await fetch(
-        `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=6`
-      )
-        .then((response) => response.json())
-        .then((response) => {
-          setCards(response.cards);
-        })
-        .catch((err) => console.error(err));
-    }
-    drawCards();
+    drawCards(deckId, DEFAULT_NUMBER_OF_CARDS);
   }, [deckId]);
 
+  function restartGame() {
+    dispatch({ type: 'RESTART' });
+    setSelectedCards([]);
+  }
+
+  // when a card is selected
   function handleCardSelection(card) {
+    // if card has NOT already been selected
     if (!selectedCards.includes(card)) {
       setSelectedCards([...selectedCards, card]);
       dispatch({ type: 'ADD_SCORE' });
+      shuffle(cards);
     } else {
-      dispatch({ type: 'RESTART' });
-      setSelectedCards([]);
+      setIsGameOver(true);
+      restartGame();
     }
+  }
+
+  function playAgain(numberOfCards) {
+    drawCards(deckId, numberOfCards);
+    setIsGameOver(false);
   }
 
   return {
     score,
     cards,
     handleCardSelection,
+    isGameOver,
+    playAgain,
   };
-  // should be returning:
-  /* 
-    shuffle cards?
-    gameOver?
-  */
 };
 
 export { useActions };
