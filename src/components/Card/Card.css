@@ -1,11 +1,11 @@
 #cardContainer {
   flex: 1 1 200px;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-  border-radius: 5px;
-  background-color: #858484; */
+  transition: all 0.2s ease-in-out;
+  animation: 0.5s ease-out 0s 1 fadeIn;
+}
+
+#cardContainer:hover {
+  transform: scale(1.08);
 }
 
 .cardImage {
