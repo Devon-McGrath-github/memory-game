@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Devon-McGrath-github/memory-game/static/css/main.1a284b5d.css",
-    "main.js": "/Devon-McGrath-github/memory-game/static/js/main.89d2cba0.js",
-    "index.html": "/Devon-McGrath-github/memory-game/index.html",
-    "main.1a284b5d.css.map": "/Devon-McGrath-github/memory-game/static/css/main.1a284b5d.css.map",
-    "main.89d2cba0.js.map": "/Devon-McGrath-github/memory-game/static/js/main.89d2cba0.js.map"
+    "main.css": "/memory-game/static/css/main.1a284b5d.css",
+    "main.js": "/memory-game/static/js/main.89d2cba0.js",
+    "index.html": "/memory-game/index.html",
+    "main.1a284b5d.css.map": "/memory-game/static/css/main.1a284b5d.css.map",
+    "main.89d2cba0.js.map": "/memory-game/static/js/main.89d2cba0.js.map"
   },
   "entrypoints": [
     "static/css/main.1a284b5d.css",
