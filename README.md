@@ -4,9 +4,9 @@
 
 Play the game [PLACEHOLDER]()
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), then built with learning in mind. The implementation is likely sub optimal, but I wanted to improve my understanding with Asynchronous API calls, Hooks, Context and useReducer so I implemented all these in the project.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), then built with improving at react as the core goal. The implementation is likely sub optimal, but I wanted to improve my understanding of Asynchronous API calls, Hooks, Context and useReducer so I implemented all these in the project.
 
-A project to improve at React, from the Odin Project [Memory Card Game Exercise](https://www.theodinproject.com/lessons/node-path-javascript-memory-card).
+Based on the assignment from the Odin Project [Memory Card Game Exercise](https://www.theodinproject.com/lessons/node-path-javascript-memory-card).
 
 ---
 
