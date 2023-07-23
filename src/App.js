@@ -7,8 +7,15 @@ function App() {
   return (
     <div className="App">
       <GameContextProvider>
-        <div>
-          <h1>Memory Card game</h1>
+        <div className="header">
+          <div>
+            <h1>Memory Card game</h1>
+            <h3>
+              Click on cards to earn points, but don't click the same card
+              twice!
+            </h3>
+          </div>
+
           <Score />
         </div>
 

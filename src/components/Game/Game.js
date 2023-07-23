@@ -9,7 +9,7 @@ export default function Game() {
   const { isGameOver, isGameWon, cards } = useContext(GameContext);
 
   return (
-    <>
+    <div id="gameWrapper">
       {isGameOver !== true && isGameWon !== true ? (
         <div className="gameContainer">
           {cards !== null && cards !== undefined ? (
@@ -21,6 +21,6 @@ export default function Game() {
       ) : (
         <GameOver />
       )}
-    </>
+    </div>
   );
 }

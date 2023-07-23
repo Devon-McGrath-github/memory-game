@@ -4,7 +4,7 @@ import './Replay.css';
 
 export default function Replay() {
   const { playAgain } = useContext(GameContext);
-  const [cardsToDraw, setCardsToDraw] = useState(6);
+  const [cardsToDraw, setCardsToDraw] = useState(10);
 
   const handleClick = async () => {
     playAgain(cardsToDraw);

@@ -1,12 +1,11 @@
 #cardContainer {
   flex: 1 1 200px;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  /* width: 200px; */
   padding: 15px;
   border-radius: 5px;
-  background-color: #858484;
+  background-color: #858484; */
 }
 
 .cardImage {
