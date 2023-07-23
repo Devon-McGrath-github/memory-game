@@ -4,7 +4,7 @@ const INITIAL_SCORE = {
   currentScore: 0,
   highScore: 0,
 };
-const DEFAULT_NUMBER_OF_CARDS = 2;
+const DEFAULT_NUMBER_OF_CARDS = 10;
 
 const reducer = (score, action) => {
   switch (action.type) {

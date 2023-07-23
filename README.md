@@ -1,5 +1,7 @@
 # Memory Game
 
+## -- Work in Progress --
+
 Play the game [PLACEHOLDER]()
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), then built with learning in mind. The implementation is likely sub optimal, but I wanted to improve my understanding with Asynchronous API calls, Hooks, Context and useReducer so I implemented all these in the project.
