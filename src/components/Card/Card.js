@@ -12,8 +12,7 @@ export default function Card({ info }) {
 
   return (
     <div id="cardContainer" onClick={handleClick}>
-      <img src={image} alt={value} className="cardImage" />
-      {/* <h2 className="cardTitle">{`${value} of ${suit}`}</h2> */}
+      <img src={image} alt={`${value} of ${suit}`} className="cardImage" />
     </div>
   );
 }
