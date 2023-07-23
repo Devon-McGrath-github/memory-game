@@ -8,4 +8,13 @@
   flex-direction: row;
   justify-content: space-between;
   align-content: center;
+  padding-bottom: 10dvh;
+}
+
+.headingText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
 }
