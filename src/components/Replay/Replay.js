@@ -11,7 +11,7 @@ export default function Replay() {
   };
 
   return (
-    <div>
+    <div className="replayContainer">
       <label>
         How many cards would you like to memorise?
         <input

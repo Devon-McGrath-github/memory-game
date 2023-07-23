@@ -8,7 +8,7 @@ import GameContext from '../../context/GameContext';
 export default function GameOver() {
   const { isGameWon } = useContext(GameContext);
   return (
-    <div>
+    <div className="gameOverContainer">
       {isGameWon === true ? <Win /> : <Loss />}
       <Replay />
     </div>
