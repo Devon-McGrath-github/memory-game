@@ -13,7 +13,7 @@ export default function Replay() {
   return (
     <div className="replayContainer">
       <label>
-        How many cards would you like to memorise?
+        Cards for next game?
         <input
           name="cardsToDraw"
           type="number"
@@ -26,7 +26,9 @@ export default function Replay() {
         />
       </label>
 
-      <button onClick={handleClick}>restart</button>
+      <button className="replayBtn" onClick={handleClick}>
+        restart
+      </button>
     </div>
   );
 }

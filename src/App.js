@@ -9,7 +9,7 @@ function App() {
       <GameContextProvider>
         <div className="header">
           <div className="headingText">
-            <h1>Memory Card game</h1>
+            <h1>Memory Card Game</h1>
             <h3>
               Click on cards to earn points, but don't click the same card
               twice!
