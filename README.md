@@ -6,7 +6,7 @@ Based on the assignment from the Odin Project [Memory Card Game Exercise](https:
 
 ## Demo
 
-Play the game [here](https://devon-mcgrath-github.github.io/memory-game/)
+**Play the game [here](https://devon-mcgrath-github.github.io/memory-game/)**
 
 ## Screenshots
 
